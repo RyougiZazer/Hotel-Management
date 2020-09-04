@@ -6,7 +6,7 @@ import org.apache.ibatis.jdbc.SQL;
 public class EmpSQLProvider {
     public String createSelectAllSQL(Emp emp){
         return new SQL(){{
-            SELECT("eid, ename, status");
+            SELECT("eid, ename, gender, department, hiredate");
             FROM("employee");
             if (null != emp.getEmpId()){
                 WHERE("eid = #{empId}");

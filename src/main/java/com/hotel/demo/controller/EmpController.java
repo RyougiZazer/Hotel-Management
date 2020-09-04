@@ -23,7 +23,7 @@ public class EmpController {
         }
         List<Emp> emps = this.empService.queryAllEmps(emp);
         model.addAttribute("emps", emps);
-        return "empList";
+        return "employee_manager";
     }
 
     @GetMapping(path = "/preAdd")

@@ -14,6 +14,7 @@ import java.util.Date;
 @Builder
 
 public class Emp {
+
     private Integer empId;
 
     private String empName;
