@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -51,7 +49,7 @@ public class EmpController {
     public String addEmp(Emp emp){
         System.out.println("新入职的员工信息是：" + emp);
         this.empService.addEmp(emp);
-        return "redirect:/emp/showList";
+        return "redirect:employee_manager";
     }
 
     @GetMapping(path = "/empSelect")
@@ -60,14 +58,25 @@ public class EmpController {
         Emp emp = this.empService.selectEmp(empId);
         model.addAttribute("emp",emp);
         System.out.println(emp);
-        return "redirect:/emp/showList";
+        return "redirect:employee_manager";
     }
 
-//    @GetMapping(path = "/deleteEmp/{eid}")
-//    public String deleteEmp(@PathVariable("eid")String eid){
-//        System.out.println("需删除的员工编号是：" +eid);
-//        Integer temp = Integer.getInteger(eid);
-//        this.empService.deleteEmp(temp);
-//        return "redirect:/employee_manager";
-//    }
+    @GetMapping(path = "/preUpdate/{eid}")
+    public String preUpdate(@PathVariable("eid") Integer eid, Model model){
+        System.out.println("需要修改信息员工编号为：" + eid);
+
+        Emp emp = this.empService.selectEmp(eid);
+
+        model.addAttribute("emp", emp);
+
+        return "updateEmp";
+    }
+
+    @PostMapping(path = "/update")
+    public String updateDept(Emp emp){
+        System.out.println("更改后的信息是：" + emp);
+        this.empService.updateEmp(emp);
+        return "redirect:employee_manager";
+    }
+
 }
