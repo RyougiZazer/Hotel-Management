@@ -5,7 +5,6 @@ import com.hotel.demo.entity.Emp;
 import com.hotel.demo.mapper.EmpMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -20,7 +19,7 @@ public class TestMybatisHotel {
 
     @Test
     public void insertTest(){
-        Emp emp= Emp.builder().empId(1).empName("peko").gender(0).deptName("foodHouse")
+        Emp emp= Emp.builder().eid(1).ename("peko").gender(0).department("foodHouse")
                 .hireDate(new Date()).build();
         empMapper.insertEmp(emp);
     }

@@ -13,7 +13,7 @@
         <form class="form-inline" method="post" action="employee_manager/showList">
             <div class="form-group">
                 <label for="exampleInputName2">员工编号：</label>
-                <input type="text" class="form-control" id="exampleInputName2" name="empId">
+                <input type="text" class="form-control" id="exampleInputName2" name="eid">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -32,10 +32,10 @@
         <tbody>
         <tr th:each="emp, counter: ${emps}">
             <td th:text="${counter.count}"></td>
-            <td th:text="${emp.empId}"></td>
-            <td th:text="${emp.empName}"></td>
+            <td th:text="${emp.getEid()}">123123</td>
+            <td th:text="${emp.getEname()}"></td>
             <td th:text="${emp.gender ==1 ? '男':'女' }"></td>
-            <td th:text="${emp.deptName}"></td>
+            <td th:text="${emp.getDepartment()}"></td>
             <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}"></td>
             <td>
                 <a href="" class="btn-warning btn">编辑</a>

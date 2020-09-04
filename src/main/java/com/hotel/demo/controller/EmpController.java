@@ -23,6 +23,7 @@ public class EmpController {
         }
         List<Emp> emps = this.empService.queryAllEmps(emp);
         model.addAttribute("emps", emps);
+        System.out.println(emps.get(0).getEname());
         return "employee_manager";
     }
 

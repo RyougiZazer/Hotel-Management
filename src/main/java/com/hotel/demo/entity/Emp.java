@@ -15,15 +15,15 @@ import java.util.Date;
 
 public class Emp {
 
-    private Integer empId;
+    private Integer eid;
 
-    private String empName;
+    private String ename;
 
     private Integer gender;
 
     private Date hireDate;
 
-    private String deptName;
+    private String department;
 
 
 }

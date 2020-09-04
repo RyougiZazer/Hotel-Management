@@ -8,17 +8,17 @@ public class EmpSQLProvider {
         return new SQL(){{
             SELECT("eid, ename, gender, department, hiredate");
             FROM("employee");
-            if (null != emp.getEmpId()){
-                WHERE("eid = #{empId}");
+            if (null != emp.getEid()){
+                WHERE("eid = #{eid}");
             }
-            if (null != emp.getEmpName() && !"".equals(emp.getEmpName())){
-                WHERE("ename = #{empName}");
+            if (null != emp.getEname() && !"".equals(emp.getEname())){
+                WHERE("ename = #{ename}");
             }
             if (null != emp.getGender()) {
                 WHERE("gender = #{gender}");
             }
-            if (null != emp.getDeptName()) {
-                WHERE("department = #{deptName}");
+            if (null != emp.getDepartment()) {
+                WHERE("department = #{department}");
             }
             if (null != emp.getHireDate()) {
                 WHERE("hiredate = #{hireDate}");
