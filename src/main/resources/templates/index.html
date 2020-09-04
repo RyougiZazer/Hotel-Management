@@ -7,7 +7,6 @@
 <body>
     <h1>欢迎！</h1>
     <p th:text="${info}"></p>
-    <p>登录时间：</p>
     <p th:text="${#dates.format(current,'yyyy-MM-dd HH:mm:ss')}"></p>
     <button onclick="location.href='/room_manager'">房间管理</button>
     <button onclick="location.href='/employee_manager'">员工管理</button>
