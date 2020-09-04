@@ -36,7 +36,7 @@ public class EmpController {
     public String addEmp(Emp emp){
         System.out.println("新入职的员工信息是：" + emp);
         this.empService.addEmp(emp);
-        return "redirect:/emp/showList";
+        return "redirect:employee_manager";
     }
 
     @GetMapping(path = "/empSelect")
@@ -45,12 +45,30 @@ public class EmpController {
         Emp emp = this.empService.selectEmp(empId);
         model.addAttribute("emp",emp);
         System.out.println(emp);
-        return "redirect:/emp/showList";
+        return "redirect:employee_manager";
     }
 
-    @GetMapping(path = "/deleteEmp/{empId}")
-    public String deleteEmp(@PathVariable("empId")Integer empId, Model model){
+    @GetMapping(path = "/deleteEmp/{eid}")
+    public String deleteEmp(@PathVariable("eid")Integer empId, Model model){
         System.out.println("需删除的员工编号是：" + empId);
         return this.empService.deleteEmp(empId);
+    }
+
+    @GetMapping(path = "/preUpdate/{eid}")
+    public String preUpdate(@PathVariable("eid") Integer eid, Model model){
+        System.out.println("需要修改信息员工编号为：" + eid);
+
+        Emp emp = this.empService.selectEmp(eid);
+
+        model.addAttribute("emp", emp);
+
+        return "updateEmp";
+    }
+
+    @PostMapping(path = "/update")
+    public String updateDept(Emp emp){
+        System.out.println("更改后的信息是：" + emp);
+        this.empService.updateEmp(emp);
+        return "redirect:employee_manager";
     }
 }

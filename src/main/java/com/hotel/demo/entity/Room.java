@@ -11,14 +11,11 @@ import java.util.Date;
 @Builder
 public class Room {
 
-    private Integer roomId;
+    private Integer rid;
 
-    private Integer roomType;
+    private Integer rtype;
 
     private Integer status;
 
-    private Date inDate;
-
-    private Date outDate;
 
 }

@@ -26,4 +26,15 @@ public class EmpSQLProvider {
         }}
                 .toString();
     }
+    public String createUpdateSQL(Emp emp){
+        return new SQL()
+                .UPDATE("employee")
+                .SET("eid = #{eid}")
+                .SET("ename = #{ename}")
+                .SET("gender=#{gender}")
+                .SET("department=#{department}")
+                .SET("hiredate=#{hiredate}")
+                .WHERE("eid = #{eid}")
+                .toString();
+    }
 }
