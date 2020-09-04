@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+    <h1>欢迎！</h1>
+    <p th:text="${info}"></p>
+    <p>登录时间：</p>
+    <p th:text="${#dates.format(current,'yyyy-MM-dd HH:mm:ss')}"></p>
+    <button onclick="location.href='/room_manager'">房间管理</button>
+    <button onclick="location.href='/employee_manager'">员工管理</button>
+    <button onclick="location.href='/order_manager'">订单管理</button>
+
+</body>
+</html>
