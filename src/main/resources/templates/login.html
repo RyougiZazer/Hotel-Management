@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -38,7 +38,7 @@
 								<p class="account-subtitle">Access to our dashboard</p>
 								
 								<!-- Form -->
-								<form action="index" method="post">
+								<form action="login" method="post">
 									<div class="form-group">
 										<input class="form-control" type="text" placeholder="UserName" name="username">
 									</div>
@@ -51,7 +51,7 @@
 								</form>
 								<!-- /Form -->
 								
-								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
+								<div class="text-center forgotpass" style="color: #ff0000"><p th:text="${error}"></p></div>
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">or</span>
