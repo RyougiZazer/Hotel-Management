@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -16,6 +17,13 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+    @GetMapping(path = "/")
+    public String init(Model model){
+        List<Emp> emps = this.empService.queryAllEmps(new Emp());
+        model.addAttribute("emps",emps);
+        return "employee_manager";
+    }
+
     @RequestMapping(path = "/showList", method = {RequestMethod.GET, RequestMethod.POST})
     public String showList(Model model, Emp emp) {
         if (emp == null) {
@@ -23,8 +31,15 @@ public class EmpController {
         }
         List<Emp> emps = this.empService.queryAllEmps(emp);
         model.addAttribute("emps", emps);
-        System.out.println(emps.get(0).getEname());
         return "employee_manager";
+    }
+
+
+    @RequestMapping(value = "delete/{eid}",method = {RequestMethod.GET})
+    public String delete(@PathVariable("eid")Integer eid){
+        System.out.println("需删除的员工编号是：" +eid.toString());
+        this.empService.deleteEmp(eid);
+        return "redirect:/employee_manager";
     }
 
     @GetMapping(path = "/preAdd")
@@ -48,9 +63,11 @@ public class EmpController {
         return "redirect:/emp/showList";
     }
 
-    @GetMapping(path = "/deleteEmp/{empId}")
-    public String deleteEmp(@PathVariable("empId")Integer empId, Model model){
-        System.out.println("需删除的员工编号是：" + empId);
-        return this.empService.deleteEmp(empId);
-    }
+//    @GetMapping(path = "/deleteEmp/{eid}")
+//    public String deleteEmp(@PathVariable("eid")String eid){
+//        System.out.println("需删除的员工编号是：" +eid);
+//        Integer temp = Integer.getInteger(eid);
+//        this.empService.deleteEmp(temp);
+//        return "redirect:/employee_manager";
+//    }
 }

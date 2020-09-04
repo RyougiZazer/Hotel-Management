@@ -10,7 +10,7 @@
     <h2>EMPLOYEE TABLE</h2>
 <div>
     <div>
-        <form class="form-inline" method="post" action="employee_manager/showList">
+        <form class="form-inline" method="post" action="/employee_manager/showList">
             <div class="form-group">
                 <label for="exampleInputName2">员工编号：</label>
                 <input type="text" class="form-control" id="exampleInputName2" name="eid">
@@ -32,19 +32,31 @@
         <tbody>
         <tr th:each="emp, counter: ${emps}">
             <td th:text="${counter.count}"></td>
-            <td th:text="${emp.getEid()}">123123</td>
+            <td th:text="${emp.getEid()}"></td>
             <td th:text="${emp.getEname()}"></td>
             <td th:text="${emp.gender ==1 ? '男':'女' }"></td>
             <td th:text="${emp.getDepartment()}"></td>
             <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}"></td>
             <td>
                 <a href="" class="btn-warning btn">编辑</a>
-                <a href="" class="btn-danger btn">删除</a>
+                <a href="" class="btn-danger btn" th:href="'/employee_manager/delete/'+${emp.getEid()}">删除</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <button type="button" onclick="history.go(-1)" class="btn btn-success">返回</button>
+    <br>
+    添加员工
+    <form method="post" action="/employee_manager/add">
+        <input type="text" placeholder="员工编号" name="eid">
+        <input type="text" placeholder="员工姓名" name="ename">
+        <input type="text" placeholder="员工性别" name="gender">
+        <input type="text" placeholder="所在部门" name="department">
+        <input type="text" placeholder="入职日期" name="hiredate">
+        <br>
+        <button type="submit">确认添加</button>
+    </form>
+    <br>
+    <button type="button" onclick="location.href='/employee_manager'" class="btn btn-success">返回</button>
 </div>
 
 </body>
