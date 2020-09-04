@@ -18,7 +18,7 @@ public class Emp {
 
     private String empName;
 
-    private String gender;
+    private Integer gender;
 
     private Date hireDate;
 
