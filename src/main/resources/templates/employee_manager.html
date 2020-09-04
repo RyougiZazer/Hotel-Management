@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>员工信息表界面</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.css">
+    <script src="/webjars/jquery/3.2.1/dist/jquery.js"></script>
 </head>
 <body>
-    <h1>EMPLOYEE</h1>
+    <h2>EMPLOYEE TABLE</h2>
+<div>
+    <div>
+        <form class="form-inline" method="post" action="employee_manager/showList">
+            <div class="form-group">
+                <label for="exampleInputName2">员工编号：</label>
+                <input type="text" class="form-control" id="exampleInputName2" name="empId">
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+        </form>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>序号</th>
+            <th>员工编号</th>
+            <th>员工姓名</th>
+            <th>性别</th>
+            <th>所属部门</th>
+            <th>入职日期</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp, counter: ${emps}">
+            <td th:text="${counter.count}"></td>
+            <td th:text="${emp.empId}"></td>
+            <td th:text="${emp.empName}"></td>
+            <td th:text="${emp.gender ==1 ? '男':'女' }"></td>
+            <td th:text="${emp.deptName}"></td>
+            <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd HH:mm')}"></td>
+            <td>
+                <a href="" class="btn-warning btn">新建</a>
+                <a href="" class="btn-danger btn">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" onclick="history.go(-1)" class="btn btn-success">返回</button>
+</div>
+
 </body>
 </html>
