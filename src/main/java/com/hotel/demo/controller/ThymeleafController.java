@@ -51,7 +51,7 @@ public class ThymeleafController {
 
     @GetMapping(path = "/index")
     public String index(Model model){
-        model.addAttribute("info","欢迎！"+currentUser.getUsername());
+        model.addAttribute("info",currentUser.getUsername());
         Date currentTime =  new Date();
         model.addAttribute("current",currentTime);
         return "index";
