@@ -14,8 +14,6 @@ public class RoomController {
 
     @Resource
     private RoomService roomService;
-    @Resource
-    private OrderService orderService;
 
     //跳转到addOrder页面上
     @GetMapping(path = "/preAadd")
@@ -49,8 +47,8 @@ public class RoomController {
 
     //修改前置条件
     // 修改的前置方法是- 目的是为了查询出需要修改的部门信息，显示在页面上。
-    @GetMapping(path = "/preUpdate/{deptId}")
-    public String preUpdate(@PathVariable("deptId") Integer roomId, Model model){
+    @GetMapping(path = "/preUpdate/{rid}")
+    public String preUpdate(@PathVariable("rid") Integer roomId, Model model){
         System.out.println("当前需要修改信息的房间是：" + roomId);
 
         Room room = this.roomService.queryRoomByRoomId(roomId);
@@ -64,7 +62,7 @@ public class RoomController {
     public String updateDept(Room room){
         System.out.println("更改后的信息是：" + room);
         this.roomService.updateRoom(room);
-        return "redirect:/dept/showList";
+        return "redirect:/room/showList";
     }
 
     // 撤除房间需要条件 - 当前房间下没有订单

@@ -1,7 +1,9 @@
 package com.hotel.demo.mapper;
 
+import com.hotel.demo.entity.Emp;
 import com.hotel.demo.entity.Order;
 import com.hotel.demo.entity.Room;
+import com.hotel.demo.provider.EmpSQLProvider;
 import com.hotel.demo.provider.OrderSQLProvider;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
@@ -30,11 +32,13 @@ public interface OrderMapper {
             "FROM `order` WHERE oid = #{oid} ")
     List<Order> selectOrderByRoomId(Integer rid);
 
+    @SelectProvider(type= OrderSQLProvider.class, method = "createSelectAllSQL")
+    List<Order> selectAllOrders(Order order);
+
     @UpdateProvider(type = OrderSQLProvider.class, method = "createUpdateSQL")
     void updateOrder(Order order);
 
     @Delete("DELETE FROM `order` WHERE oid = #{oid}")
     void deleteOrderByOrderId(Integer oid);
-
 
 }

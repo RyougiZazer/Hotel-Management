@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>预订单信息管理界面</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.css">
+    <script src="/webjars/jquery/3.2.1/dist/jquery.js"></script>
 </head>
 <body>
-    <h1>ORDER</h1>
+<h2>ORDER TABLE</h2>
+<div>
+    <div>
+        <form class="form-inline" method="post" action="/order_manager/showList">
+            <div class="form-group">
+                <label for="exampleInputName2">订单编号：</label>
+                <input type="text" class="form-control" id="exampleInputName2" name="oid">
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>序号</th>
+            <th>订单编号</th>
+            <th>房间编号</th>
+            <th>预订人数</th>
+            <th>入住时间</th>
+            <th>退房时间</th>
+            <th>预定人姓名</th>
+            <th>预定人电话</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order, counter: ${orders}">
+            <td th:text="${counter.count}"></td>
+            <td th:text="${order.oid}"></td>
+            <td th:text="${order.rid}"></td>
+            <td th:text="${order.number }"></td>
+            <td th:text="${#dates.format(order.inDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(order.outDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${order.oname}"></td>
+            <td th:text="${order.ophone}"></td>
+            <td>
+                <a href="" class="btn-warning btn">编辑</a>
+                <a href="" class="btn-danger btn" th:href="'/order_manager/delete/'+${order.oid}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <div>
+        添加订单
+        <form method="post" action="/order_manager/add">
+            <input type="text" placeholder="订单编号" name="oid">
+            <input type="text" placeholder="房间编号" name="rid">
+            <input type="text" placeholder="入住人数" name="number">
+            <input type="date" placeholder="入住时间" name="inDate">
+            <input type="date" placeholder="退房时间" name="outDate">
+            <input type="text" placeholder="预定人姓名" name="oname">
+            <input type="text" placeholder="预定人电话" name="ophone">
+            <br>
+            <button type="submit" class="btn-warning">确认添加</button>
+        </form>
+        <br>
+    </div>
+
+    <br>
+
+    <div style="color: #ff0000"><h4 th:text="${log}"></h4></div>
+
+    <button type="button" onclick="location.href='/order_manager'" class="btn btn-success">返回</button>
+</div>
 </body>
 </html>

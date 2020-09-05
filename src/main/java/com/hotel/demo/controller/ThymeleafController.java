@@ -63,7 +63,7 @@ public class ThymeleafController {
     }
 
     @GetMapping(path = "/order_manager")
-    public String order() {return "order_manager";}
+    public String order() {return "redirect:order_manager/";}
 
     @GetMapping(path = "/employee_manager")
     public String employee(){

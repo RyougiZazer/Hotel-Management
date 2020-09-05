@@ -1,9 +1,11 @@
 package com.hotel.demo.service.impl;
 
+import com.hotel.demo.entity.Emp;
 import com.hotel.demo.entity.Order;
 import com.hotel.demo.entity.Room;
 import com.hotel.demo.mapper.OrderMapper;
 import com.hotel.demo.service.OrderService;
+import org.ietf.jgss.Oid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +36,13 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public String deleteOrder(Integer oid) {
-        return null;
+            this.orderMapper.deleteOrderByOrderId(oid);
+            return null;
+    }
+
+    @Override
+    public List<Order> queryAllOrders(Order order) {
+        return  this.orderMapper.selectAllOrders(order);
     }
 
 }

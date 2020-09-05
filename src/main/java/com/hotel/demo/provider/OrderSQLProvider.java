@@ -5,15 +5,9 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class OrderSQLProvider {
     public String createUpdateSQL(Order order){
-//        return new SQL()
-//                .UPDATE("dept")
-//                .SET("deptname = #{deptName}")
-//                .SET("status = #{status}")
-//                .WHERE("deptid = #{deptId}")
-//                .toString();
         return new SQL(){{
-            UPDATE("order");
-            if (null != order.getRid() && !"".equals(order.getRid())){
+            UPDATE("`order`");
+            if (null != order.getRid()){
                 SET("rid = #{rid}");
             }
             if (null != order.getNumber()) {
@@ -37,7 +31,7 @@ public class OrderSQLProvider {
     public String createSelectAllSQL(Order order){
         return new SQL(){{
             SELECT("oid,rid,number,indate,outdate,oname,ophone");
-            FROM("order");
+            FROM("`order`");
             if (null != order.getOid()){
                 WHERE("oid = #{oid}");
             }
