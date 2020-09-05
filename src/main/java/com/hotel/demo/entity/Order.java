@@ -2,6 +2,7 @@ package com.hotel.demo.entity;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,9 +11,9 @@ import java.util.Date;
 @Builder
 public class Order {
 
-    private Integer orderId;
+    private Integer oid;
 
-    private Integer roomId;
+    private Integer rid;
 
     private Integer number;
 
@@ -20,7 +21,8 @@ public class Order {
 
     private Date outDate;
 
-    private String orderMan;
+    private String oname;
 
-    private String OMPhone;
+    private String ophone;
+
 }

@@ -2,7 +2,7 @@ package com.hotel.demo.entity;
 
 import lombok.*;
 
-import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,14 +11,12 @@ import java.util.Date;
 @Builder
 public class Room {
 
-    private Integer roomId;
+    private Integer rid;
 
-    private Integer roomType;
+    private Integer rtype;
 
     private Integer status;
 
-    private Date inDate;
-
-    private Date outDate;
+    private List<Order> orderList;
 
 }
