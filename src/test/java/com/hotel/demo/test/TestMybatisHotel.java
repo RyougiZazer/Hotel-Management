@@ -29,7 +29,6 @@ public class TestMybatisHotel {
 
     @Test
     public void insertTest(){
-
         Room room = Room.builder().rid(4).rtype(2).status(1).build();
         roomMapper.insertRoom(room);
     }
