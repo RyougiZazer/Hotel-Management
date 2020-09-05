@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.FetchType;
 import java.util.List;
 
 public interface OrderMapper {
+
     @Insert("INSERT INTO `order` (oid, rid, number, indate, outdate, oname, ophone)" +
             " VALUES(#{oid}, #{rid}, #{number}, #{inDate}, #{outDate}, #{oname}, #{ophone})")
     void insertOrder(Order order);
@@ -34,5 +35,6 @@ public interface OrderMapper {
 
     @Delete("DELETE FROM `order` WHERE oid = #{oid}")
     void deleteOrderByOrderId(Integer oid);
+
 
 }

@@ -25,6 +25,8 @@ public class EmpServiceImpl implements EmpService {
         String msg="success";
         if(emp==null)
             msg="无此员工,无法删除";
+        else
+            this.empMapper.deleteEmp(empId);
         return msg;
     }
 
@@ -34,7 +36,13 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    public void updateEmp(Emp emp){
+        this.empMapper.updateEmp(emp);
+    }
+
+    @Override
     public List<Emp> queryAllEmps(Emp emp){
+        List<Emp> temp = this.empMapper.selectAllEmps(emp);
         return  this.empMapper.selectAllEmps(emp);
     }
 }

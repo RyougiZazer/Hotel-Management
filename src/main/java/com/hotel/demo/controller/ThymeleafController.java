@@ -51,7 +51,7 @@ public class ThymeleafController {
 
     @GetMapping(path = "/index")
     public String index(Model model){
-        model.addAttribute("info","欢迎！"+currentUser.getUsername());
+        model.addAttribute("info",currentUser.getUsername());
         Date currentTime =  new Date();
         model.addAttribute("current",currentTime);
         return "index";
@@ -66,6 +66,8 @@ public class ThymeleafController {
     public String order() {return "order_manager";}
 
     @GetMapping(path = "/employee_manager")
-    public String employee(){return "employee_manager";}
+    public String employee(){
+        return "redirect:employee_manager/";
+    }
 
 }

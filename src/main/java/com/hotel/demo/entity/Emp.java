@@ -14,15 +14,16 @@ import java.util.Date;
 @Builder
 
 public class Emp {
-    private Integer empId;
 
-    private String empName;
+    private Integer eid;
+
+    private String ename;
 
     private Integer gender;
 
     private Date hireDate;
 
-    private String deptName;
+    private String department;
 
 
 }

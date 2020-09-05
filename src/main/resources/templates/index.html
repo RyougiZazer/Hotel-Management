@@ -5,9 +5,8 @@
     <title>index</title>
 </head>
 <body>
-    <h1>欢迎！</h1>
-    <p th:text="${info}"></p>
-    <p th:text="${#dates.format(current,'yyyy-MM-dd HH:mm:ss')}"></p>
+    <h1 th:text="'欢迎！'+${info}"></h1>
+    <p th:text="'登录时间为：'+ ${#dates.format(current,'yyyy-MM-dd HH:mm:ss')}"></p>
     <button onclick="location.href='/room_manager'">房间管理</button>
     <button onclick="location.href='/employee_manager'">员工管理</button>
     <button onclick="location.href='/order_manager'">订单管理</button>

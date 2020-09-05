@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,6 +17,13 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+    @GetMapping(path = "/")
+    public String init(Model model){
+        List<Emp> emps = this.empService.queryAllEmps(new Emp());
+        model.addAttribute("emps",emps);
+        return "employee_manager";
+    }
+
     @RequestMapping(path = "/showList", method = {RequestMethod.GET, RequestMethod.POST})
     public String showList(Model model, Emp emp) {
         if (emp == null) {
@@ -23,19 +31,42 @@ public class EmpController {
         }
         List<Emp> emps = this.empService.queryAllEmps(emp);
         model.addAttribute("emps", emps);
-        return "empList";
+        if(emps.isEmpty()){
+            model.addAttribute("log","查无此人！");
+        }else{
+            model.addAttribute("log","查询成功！");
+        }
+        return "employee_manager";
     }
 
-    @GetMapping(path = "/preAdd")
-    public String toAdd(){
-        return "addEmp";
+
+    @RequestMapping(value = "delete/{eid}",method = {RequestMethod.GET})
+    public String delete(@PathVariable("eid")Integer eid,Model model){
+        System.out.println("需删除的员工编号是：" +eid.toString());
+        this.empService.deleteEmp(eid);
+        List<Emp> emps = this.empService.queryAllEmps(new Emp());
+        model.addAttribute("emps",emps);
+        model.addAttribute("log","删除成功！");
+        return "employee_manager";
     }
 
     @PostMapping(path = "/add")
-    public String addEmp(Emp emp){
+    public String addEmp(Emp emp,Model model){
         System.out.println("新入职的员工信息是：" + emp);
-        this.empService.addEmp(emp);
-        return "redirect:/emp/showList";
+        emp.setHireDate(new Date());
+        try {
+            this.empService.addEmp(emp);
+        }catch (Exception e){
+            model.addAttribute("log","员工编号重复！请检查后添加！");
+            List<Emp> emps = this.empService.queryAllEmps(new Emp());
+            model.addAttribute("emps",emps);
+            return "employee_manager";
+        }
+
+        model.addAttribute("log","添加成功！");
+        List<Emp> emps = this.empService.queryAllEmps(new Emp());
+        model.addAttribute("emps",emps);
+        return "employee_manager";
     }
 
     @GetMapping(path = "/empSelect")
@@ -44,12 +75,25 @@ public class EmpController {
         Emp emp = this.empService.selectEmp(empId);
         model.addAttribute("emp",emp);
         System.out.println(emp);
-        return "redirect:/emp/showList";
+        return "redirect:employee_manager";
     }
 
-    @GetMapping(path = "/deleteEmp/{empId}")
-    public String deleteEmp(@PathVariable("empId")Integer empId, Model model){
-        System.out.println("需删除的员工编号是：" + empId);
-        return this.empService.deleteEmp(empId);
+    @GetMapping(path = "/preUpdate/{eid}")
+    public String preUpdate(@PathVariable("eid") Integer eid, Model model){
+        System.out.println("需要修改信息员工编号为：" + eid);
+
+        Emp emp = this.empService.selectEmp(eid);
+
+        model.addAttribute("emp", emp);
+
+        return "updateEmp";
     }
+
+    @PostMapping(path = "/update")
+    public String updateDept(Emp emp){
+        System.out.println("更改后的信息是：" + emp);
+        this.empService.updateEmp(emp);
+        return "redirect:employee_manager";
+    }
+
 }

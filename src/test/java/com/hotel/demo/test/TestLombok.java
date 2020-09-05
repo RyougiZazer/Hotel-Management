@@ -10,11 +10,11 @@ public class TestLombok {
     @Test
     public void test(){
         Emp emp=new Emp();
-        emp.setEmpId(1);
-        emp.setEmpName("Peko");
+        emp.setEid(1);
+        emp.setEname("Peko");
         emp.setGender(0);
         emp.setHireDate(new Date());
-        emp.setDeptName("FoodHouse");
+        emp.setDepartment("FoodHouse");
 
         System.out.println(emp);
     }

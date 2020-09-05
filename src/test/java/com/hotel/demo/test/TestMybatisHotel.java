@@ -30,14 +30,17 @@ public class TestMybatisHotel {
     @Test
     public void insertTest(){
 
-        Room room = Room.builder().rid(5).rtype(1).status(1).build();
+        Room room = Room.builder().rid(4).rtype(2).status(1).build();
         roomMapper.insertRoom(room);
     }
 
     @Test
     public void insertOrder(){
-        Order order = Order.builder().oid(2).rid(3).number(1).inDate(new Date()).outDate(new Date()).oname("li").ophone("123456").build();
+        Order order = Order.builder().oid(5).rid(4).number(1).inDate(new Date()).outDate(new Date()).oname("li").ophone("123456").build();
         orderMapper.insertOrder(order);
+        /*Emp emp= Emp.builder().eid(1).ename("peko").gender(0).department("foodHouse")
+                .hireDate(new Date()).build();
+        empMapper.insertEmp(emp);*/
     }
 
     @Test

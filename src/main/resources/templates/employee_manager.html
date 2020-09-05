@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>员工信息表界面</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.css">
+    <script src="/webjars/jquery/3.2.1/dist/jquery.js"></script>
 </head>
 <body>
-    <h1>EMPLOYEE</h1>
+    <h2>EMPLOYEE TABLE</h2>
+<div>
+    <div>
+        <form class="form-inline" method="post" action="/employee_manager/showList">
+            <div class="form-group">
+                <label for="exampleInputName2">员工编号：</label>
+                <input type="text" class="form-control" id="exampleInputName2" name="eid">
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>序号</th>
+            <th>员工编号</th>
+            <th>员工姓名</th>
+            <th>性别</th>
+            <th>所属部门</th>
+            <th>入职日期</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp, counter: ${emps}">
+            <td th:text="${counter.count}"></td>
+            <td th:text="${emp.getEid()}"></td>
+            <td th:text="${emp.getEname()}"></td>
+            <td th:text="${emp.gender ==1 ? '男':'女' }"></td>
+            <td th:text="${emp.getDepartment()}"></td>
+            <td th:text="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}"></td>
+            <td>
+                <a href="" class="btn-warning btn">编辑</a>
+                <a href="" class="btn-danger btn" th:href="'/employee_manager/delete/'+${emp.getEid()}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <div>
+        添加员工
+        <form method="post" action="/employee_manager/add">
+            <input type="text" placeholder="员工编号" name="eid">
+            <input type="text" placeholder="员工姓名" name="ename">
+            <input type="text" placeholder="员工性别" name="gender">
+            <input type="text" placeholder="所在部门" name="department">
+            <br>
+            <button type="submit" class="btn-warning">确认添加</button>
+        </form>
+        <br>
+    </div>
+
+    <br>
+
+    <div style="color: #ff0000"><h4 th:text="${log}"></h4></div>
+
+    <button type="button" onclick="location.href='/employee_manager'" class="btn btn-success">返回</button>
+</div>
+
 </body>
 </html>
