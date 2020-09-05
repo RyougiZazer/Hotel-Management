@@ -66,6 +66,8 @@ public class ThymeleafController {
     public String order() {return "order_manager";}
 
     @GetMapping(path = "/employee_manager")
-    public String employee(){return "employee_manager";}
+    public String employee(){
+        return "redirect:employee_manager/";
+    }
 
 }
