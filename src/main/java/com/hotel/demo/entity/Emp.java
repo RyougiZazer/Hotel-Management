@@ -21,7 +21,7 @@ public class Emp {
 
     private Integer gender;
 
-    private Date hireDate;
+    private Date hiredate;
 
     private String department;
 

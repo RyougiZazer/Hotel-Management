@@ -53,7 +53,7 @@ public class EmpController {
     @PostMapping(path = "/add")
     public String addEmp(Emp emp,Model model){
         System.out.println("新入职的员工信息是：" + emp);
-        emp.setHireDate(new Date());
+        emp.setHiredate(new Date());
         try {
             this.empService.addEmp(emp);
         }catch (Exception e){
@@ -69,14 +69,6 @@ public class EmpController {
         return "employee_manager";
     }
 
-    @GetMapping(path = "/empSelect")
-    public String selectEmp(Integer empId, Model model){
-        System.out.println("查询的员工编号是：" + empId);
-        Emp emp = this.empService.selectEmp(empId);
-        model.addAttribute("emp",emp);
-        System.out.println(emp);
-        return "redirect:employee_manager";
-    }
 
     @GetMapping(path = "/preUpdate/{eid}")
     public String preUpdate(@PathVariable("eid") Integer eid, Model model){

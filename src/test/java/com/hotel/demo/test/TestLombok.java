@@ -13,7 +13,7 @@ public class TestLombok {
         emp.setEid(1);
         emp.setEname("Peko");
         emp.setGender(0);
-        emp.setHireDate(new Date());
+        emp.setHiredate(new Date());
         emp.setDepartment("FoodHouse");
 
         System.out.println(emp);

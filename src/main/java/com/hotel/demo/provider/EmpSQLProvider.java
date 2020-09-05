@@ -20,8 +20,8 @@ public class EmpSQLProvider {
             if (null != emp.getDepartment()) {
                 WHERE("department = #{department}");
             }
-            if (null != emp.getHireDate()) {
-                WHERE("hiredate = #{hireDate}");
+            if (null != emp.getHiredate()) {
+                WHERE("hiredate = #{hiredate}");
             }
         }}
                 .toString();
