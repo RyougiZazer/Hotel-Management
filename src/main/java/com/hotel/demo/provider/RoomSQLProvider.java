@@ -5,12 +5,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class RoomSQLProvider {
     public String createUpdateSQL(Room room){
-//        return new SQL()
-//                .UPDATE("dept")
-//                .SET("deptname = #{deptName}")
-//                .SET("status = #{status}")
-//                .WHERE("deptid = #{deptId}")
-//                .toString();
+
         return new SQL(){{
             UPDATE("room");
             if (null != room.getRtype() && !"".equals(room.getRtype())){

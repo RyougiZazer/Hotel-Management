@@ -7,6 +7,7 @@ import com.hotel.demo.entity.Room;
 import com.hotel.demo.mapper.EmpMapper;
 import com.hotel.demo.mapper.OrderMapper;
 import com.hotel.demo.mapper.RoomMapper;
+import com.hotel.demo.service.RoomService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {DemoApplication.class})
@@ -26,6 +28,9 @@ public class TestMybatisHotel {
 
     @Resource
     private OrderMapper orderMapper;
+
+    @Resource
+    private RoomService roomService;
 
     @Test
     public void insertTest(){
@@ -44,7 +49,7 @@ public class TestMybatisHotel {
 
     @Test
     public void selectTest(){
-        Emp emp=empMapper.selectEmp(new Integer(1));
+        Emp emp=empMapper.selectEmp(1);
         System.out.println(emp);
 
 
@@ -52,8 +57,8 @@ public class TestMybatisHotel {
 
     @Test
     public void selectRoom(){
-        Room room = roomMapper.selectRoomByRoomId(5);
-        System.out.println(room);
+        List<Room> rooms= roomService.queryAllRoom(new Room());
+        System.out.println(rooms);
     }
 
     @Test

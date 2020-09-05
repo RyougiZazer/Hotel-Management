@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface EmpMapper {
     @Insert("INSERT INTO employee(eid, ename, gender, department, hiredate) " +
-            "VALUES(#{eid}, #{ename}, #{gender}, #{department}, #{hireDate})")
+            "VALUES(#{eid}, #{ename}, #{gender}, #{department}, #{hiredate})")
     void insertEmp(Emp emp);
 
     @Delete("DELETE FROM employee WHERE eid = #{eid}")
