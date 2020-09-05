@@ -53,7 +53,7 @@ public class EmpController {
     @PostMapping(path = "/add")
     public String addEmp(Emp emp,Model model){
         System.out.println("新入职的员工信息是：" + emp);
-        emp.setHireDate(new Date());
+        emp.setHiredate(new Date());
         try {
             this.empService.addEmp(emp);
         }catch (Exception e){
@@ -69,31 +69,32 @@ public class EmpController {
         return "employee_manager";
     }
 
-    @GetMapping(path = "/empSelect")
-    public String selectEmp(Integer empId, Model model){
-        System.out.println("查询的员工编号是：" + empId);
-        Emp emp = this.empService.selectEmp(empId);
-        model.addAttribute("emp",emp);
-        System.out.println(emp);
-        return "redirect:employee_manager";
-    }
+//    @GetMapping(path = "/empSelect")
+//    public String selectEmp(Integer empId, Model model){
+//        System.out.println("查询的员工编号是：" + empId);
+//        Emp emp = this.empService.selectEmp(empId);
+//        model.addAttribute("emp",emp);
+//        System.out.println(emp);
+//        return "redirect:employee_manager";
+//    }
 
-    @GetMapping(path = "/preUpdate/{eid}")
+    @RequestMapping(path = "/preupdate/{eid}",method = {RequestMethod.GET})
     public String preUpdate(@PathVariable("eid") Integer eid, Model model){
         System.out.println("需要修改信息员工编号为：" + eid);
-
         Emp emp = this.empService.selectEmp(eid);
-
         model.addAttribute("emp", emp);
-
-        return "updateEmp";
+        return "update_emp";
     }
 
     @PostMapping(path = "/update")
-    public String updateDept(Emp emp){
+    public String updateEmp(Emp emp,Model model){
         System.out.println("更改后的信息是：" + emp);
+        emp.setHiredate(new Date());
         this.empService.updateEmp(emp);
-        return "redirect:employee_manager";
+        List<Emp> emps = this.empService.queryAllEmps(new Emp());
+        model.addAttribute("emps",emps);
+        model.addAttribute("log","修改成功！");
+        return "employee_manager";
     }
 
 }

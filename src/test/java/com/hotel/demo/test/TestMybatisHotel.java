@@ -20,7 +20,7 @@ public class TestMybatisHotel {
     @Test
     public void insertTest(){
         Emp emp= Emp.builder().eid(1).ename("peko").gender(0).department("foodHouse")
-                .hireDate(new Date()).build();
+                .hiredate(new Date()).build();
         empMapper.insertEmp(emp);
     }
 
