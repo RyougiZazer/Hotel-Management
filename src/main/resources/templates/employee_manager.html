@@ -37,10 +37,10 @@
             <td th:text="${emp.getEname()}"></td>
             <td th:text="${emp.gender ==1 ? '男':'女' }"></td>
             <td th:text="${emp.getDepartment()}"></td>
-            <td th:text="${#dates.format(emp.getHiredate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(emp.getHiredate(), 'yyyy-MM-dd')}"></td>
             <td>
-                <a href="" class="btn-warning btn">编辑</a>
-                <a href="" class="btn-danger btn" th:href="'/employee_manager/delete/'+${emp.getEid()}">删除</a>
+                <a href="" class="btn-warning btn" th:href="'/employee_manager/preupdate/'+${emp.getEid()}">编辑</a>
+                <a type="delete" href="" class="btn-danger btn" th:href="'/employee_manager/delete/'+${emp.getEid()}">删除</a>
             </td>
         </tr>
         </tbody>
@@ -65,6 +65,7 @@
 
     <button type="button" onclick="location.href='/employee_manager'" class="btn btn-success">返回</button>
 </div>
+
 
 </body>
 </html>

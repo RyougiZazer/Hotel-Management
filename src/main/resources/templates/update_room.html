@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改房间信息界面</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.css">
+</head>
+<body>
+<div>
+    <h2>修改房间信息</h2>
+    <p style="color: #ff0000" th:text="'修改的房间编号为:'+${room.rid}"></p>
+    <form class="form-horizontal" th:action="@{/room_manager/update}" method="post" name="frm">
+        <div class="form-group">
+            <label for="inputEmail1" class="col-sm-2 control-label">房间编号:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail1" name="rid" readonly
+                       th:value="${room.rid}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail1" class="col-sm-2 control-label">房间类别:</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="inputEmail3" name="rtype"  required th:filed="${room.rtype}">
+                    <option value="1" th:selected="${room.rtype == 1}">单人间</option>
+                    <option value="2" th:selected="${room.rtype == 2}">双人间</option>
+                    <option value="3" th:selected="${room.rtype == 3}">大间</option>
+                    <option value="4" th:selected="${room.rtype == 4}">总统套房</option>
+                    <option value="8" th:selected="${room.rtype == 8}">青年旅社套房</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">状态:</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="inputEmail3" name="status" required th:field="${room.status}">
+                    <option value="0" th:selected="${room.status == 0 ? 'selected' : ''}">空闲</option>
+                    <option value="1" th:selected="${room.status == 1 ? 'selected' : ''}">已满</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn-danger">确定</button>
+                <button class="btn-warning" onclick="location.href='/room_manager'">返回</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    let btnObj = document.querySelector("button[type=button]");
+    btnObj.onclick = function(){
+        let result = confirm("确定需要执行修改吗？");
+        if (result) {
+            document.frm.submit();
+        } else {
+            alert("已取消修改的操作");
+        }
+    }
+</script>
+</body>
+</html>

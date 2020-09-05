@@ -32,6 +32,7 @@ public class RoomController {
         System.out.println("新启用的房间信息是：" + room);
         try {
             this.roomService.addRoom(room);
+            System.out.println(room);
         }catch (Exception e){
             model.addAttribute("log","房间编号重复！请检查后添加！");
             List<Room> rooms = this.roomService.queryAllRoom(new Room());
@@ -70,29 +71,35 @@ public class RoomController {
         return "roomInfo";
     }*/
 
-    @GetMapping(path = "/preUpdate/{deptId}")
-    public String preUpdate(@PathVariable("deptId") Integer roomId, Model model){
-        System.out.println("当前需要修改信息的房间是：" + roomId);
+    @GetMapping(path = "/preupdate/{rid}")
+    public String preUpdate(@PathVariable("rid") Integer rid, Model model){
+        System.out.println("当前需要修改信息的房间是：" + rid);
 
-        Room room = this.roomService.queryRoomByRoomId(roomId);
+        Room room = this.roomService.queryRoomByRoomId(rid);
 
         model.addAttribute("room", room);
 
-        return "updateRoom";
+        return "update_room";
     }
 
     @PostMapping(path = "/update")
-    public String updateDept(Room room){
+    public String updateDept(Room room, Model model){
         System.out.println("更改后的信息是：" + room);
         this.roomService.updateRoom(room);
-        return "redirect:/dept/showList";
+        List<Room> rooms = this.roomService.queryAllRoom(new Room());
+        model.addAttribute("rooms",rooms);
+        model.addAttribute("log","修改成功！");
+        return "room_manager";
     }
 
-    // 撤除房间需要条件 - 当前房间下没有订单
-    @GetMapping(path = "/disabled/{roomId}")
-    public @ResponseBody String disableDept(@PathVariable("roomId") Integer roomId, Model model){
-        System.out.println("需要撤除的部门是:" + roomId);
-        return this.roomService.deleteRoom(roomId);
+    @RequestMapping(value = "delete/{rid}",method = {RequestMethod.GET})
+    public String delete(@PathVariable("rid")Integer rid,Model model){
+        System.out.println("需停用的房间编号是：" +rid.toString());
+        this.roomService.deleteRoom(rid);
+        List<Room> rooms = this.roomService.queryAllRoom(new Room());
+        model.addAttribute("rooms",rooms);
+        model.addAttribute("log","删除成功！");
+        return "room_manager";
     }
 
 }
