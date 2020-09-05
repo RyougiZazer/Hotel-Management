@@ -3,6 +3,7 @@ package com.hotel.demo.controller;
 
 import com.hotel.demo.entity.Emp;
 import com.hotel.demo.entity.Order;
+import com.hotel.demo.entity.Room;
 import com.hotel.demo.service.OrderService;
 import com.hotel.demo.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,19 @@ public class OrderController {
     @PostMapping(path = "/add")
     public String addOrder(Order order,Model model){
         System.out.println("新产生的订单是：" + order);
+        Room tempRoom = null;
+
+        tempRoom = this.roomService.queryRoomByRoomId(order.getRid());
+
+        if(tempRoom == null){
+            model.addAttribute("log","房间不存在！请检查后再试！");
+            return "order_manager";
+        }
+
+        if(order.getNumber() > tempRoom.getRtype()){
+            model.addAttribute("log","房间人数过多！请预定更多房间或更换房间类型！");
+            return "order_manager";
+        }
         try {
             this.orderService.addOrder(order);
         }catch (Exception e){
