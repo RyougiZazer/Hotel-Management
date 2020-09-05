@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/hotel?useUnicode=true&characterEncode=utf8
+    url: jdbc:mysql://localhost:3306/hotel?useUnicode=true&characterEncode=utf8
     username: root
-    password: wxy123698745
+    password: yxc686979y
   thymeleaf:
     cache: false
 mybatis:

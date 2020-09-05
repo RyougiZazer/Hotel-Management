@@ -2,6 +2,7 @@ package com.hotel.demo.entity;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +24,5 @@ public class Order {
     private String oname;
 
     private String ophone;
+
 }
