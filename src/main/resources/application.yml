@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/hotel?useUnicode=true&characterEncode=utf8
     username: root
-    password: yxc686979y
+    password: 19990403
   thymeleaf:
     cache: false
 mybatis:
