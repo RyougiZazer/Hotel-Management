@@ -42,7 +42,6 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public List<Emp> queryAllEmps(Emp emp){
-        List<Emp> temp = this.empMapper.selectAllEmps(emp);
         return  this.empMapper.selectAllEmps(emp);
     }
 }

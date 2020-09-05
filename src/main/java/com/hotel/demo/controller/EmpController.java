@@ -70,14 +70,6 @@ public class EmpController {
         return "employee_manager";
     }
 
-//    @GetMapping(path = "/empSelect")
-//    public String selectEmp(Integer empId, Model model){
-//        System.out.println("查询的员工编号是：" + empId);
-//        Emp emp = this.empService.selectEmp(empId);
-//        model.addAttribute("emp",emp);
-//        System.out.println(emp);
-//        return "redirect:employee_manager";
-//    }
 
     @RequestMapping(path = "/preupdate/{eid}",method = {RequestMethod.GET})
     public String preUpdate(@PathVariable("eid") Integer eid, Model model){

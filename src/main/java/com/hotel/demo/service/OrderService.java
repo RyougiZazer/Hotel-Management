@@ -13,4 +13,6 @@ public interface OrderService {
     Order selectOrderByOrderId(Integer orderId);
 
     String deleteOrder(Integer orderid);
+
+    List<Order> queryAllOrders(Order order);
 }
