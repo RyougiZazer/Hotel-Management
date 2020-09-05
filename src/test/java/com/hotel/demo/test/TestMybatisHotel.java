@@ -26,7 +26,7 @@ public class TestMybatisHotel {
 
     @Test
     public void selectTest(){
-        Emp emp=empMapper.selectEmp(new Integer(1));
+        Emp emp=empMapper.selectEmp(1);
         System.out.println(emp);
     }
 
