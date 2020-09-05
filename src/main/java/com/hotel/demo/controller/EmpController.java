@@ -57,6 +57,7 @@ public class EmpController {
         try {
             this.empService.addEmp(emp);
         }catch (Exception e){
+            e.printStackTrace();
             model.addAttribute("log","员工编号重复！请检查后添加！");
             List<Emp> emps = this.empService.queryAllEmps(new Emp());
             model.addAttribute("emps",emps);
@@ -81,7 +82,6 @@ public class EmpController {
     @PostMapping(path = "/update")
     public String updateEmp(Emp emp,Model model){
         System.out.println("更改后的信息是：" + emp);
-        emp.setHiredate(new Date());
         this.empService.updateEmp(emp);
         List<Emp> emps = this.empService.queryAllEmps(new Emp());
         model.addAttribute("emps",emps);

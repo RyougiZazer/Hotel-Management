@@ -7,7 +7,7 @@
     <script src="/webjars/jquery/3.2.1/dist/jquery.js"></script>
 </head>
 <body>
-<h2>ORDER TABLE</h2>
+<h2>订单管理</h2>
 <div>
     <div>
         <form class="form-inline" method="post" action="/order_manager/showList">
@@ -71,6 +71,7 @@
     <div style="color: #ff0000"><h4 th:text="${log}"></h4></div>
 
     <button type="button" onclick="location.href='/order_manager'" class="btn btn-success">返回</button>
+    <button type="button" onclick="location.href='/index'" class="btn-link">主页</button>
 </div>
 </body>
 </html>
