@@ -43,7 +43,7 @@
             <td th:text="${order.oname}"></td>
             <td th:text="${order.ophone}"></td>
             <td>
-                <a href="" class="btn-warning btn">编辑</a>
+                <a href="" class="btn-warning btn" th:href="'/order_manager/preUpdate/'+${order.oid}">编辑</a>
                 <a href="" class="btn-danger btn" th:href="'/order_manager/delete/'+${order.oid}">删除</a>
             </td>
         </tr>

@@ -1,6 +1,7 @@
 package com.hotel.demo.controller;
 
 
+import com.hotel.demo.entity.Emp;
 import com.hotel.demo.entity.Order;
 import com.hotel.demo.service.OrderService;
 import com.hotel.demo.service.RoomService;
@@ -72,30 +73,34 @@ public class OrderController {
         return "redirect:/order_manager/showList";
     }
 
-    @GetMapping(path = "/orderSelect")
+    /*@GetMapping(path = "/orderSelect")
     public String selectOrder(Integer oid, Model model){
         System.out.println("查询的员工编号是：" + oid);
         Order order = this.orderService.selectOrderByOrderId(oid);
         model.addAttribute("order",order);
         System.out.println(order);
         return "redirect:order_manager";
-    }
+    }*/
 
-    @GetMapping(path = "/preUpdate/{eid}")
+    @RequestMapping(path = "/preUpdate/{oid}",method = {RequestMethod.GET})
     public String preUpdate(@PathVariable("oid") Integer oid, Model model){
         System.out.println("需要修改信息订单编号为：" + oid);
 
         Order order = this.orderService.selectOrderByOrderId(oid);
 
         model.addAttribute("order", order);
+        System.out.println("********************************************"+order.getOphone());
 
-        return "updateOrder";
+        return "update_order";
     }
 
     @PostMapping(path = "/update")
-    public String updateDept(Order order){
+    public String updateDept(Order order,Model model){
         System.out.println("更改后的信息是：" + order);
         this.orderService.updateOrder(order);
-        return "redirect:order_manager";
+        List<Order> orders = this.orderService.queryAllOrders(new Order());
+        model.addAttribute("orders",orders);
+        model.addAttribute("log","修改成功！");
+        return "order_manager";
     }
 }

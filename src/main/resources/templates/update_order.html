@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单信息界面</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.css">
+</head>
+<body>
+<h2>修改订单信息</h2>
+<p style="color: #ff0000" th:text="'修改的订单编号为:'+${order.oid}"></p>
+<form class="form-horizontal" th:action="@{/order_manager/update}" method="post" name="frm">
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">订单编号:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail1" name="oid" readonly
+                   th:value="${order.oid}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">房间编号:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail2" name="rid" required
+                   th:value="${order.rid}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail2" class="col-sm-2 control-label">订单人数:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail3" name="number" required
+                   th:value="${order.number}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">入住日期:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="inputEmail4" name="inDate" required
+                   th:value="${order.inDate}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">退房日期:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="inputEmail15" name="outDate" required
+                   th:value="${order.outDate}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">预订人姓名:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail16" name="oname" required
+                   th:value="${order.oname}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail1" class="col-sm-2 control-label">预订人电话:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail7" name="ophone" required
+                   th:value="${order.ophone}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" class="btn-danger">确定</button>
+            <button class="btn-warning" onclick="location.href='/order_manager'">返回</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    let btnObj = document.querySelector("button[type=button]");
+    btnObj.onclick = function(){
+        let result = confirm("确定需要执行修改吗？");
+        if (result) {
+            document.frm.submit();
+        } else {
+            alert("已取消修改的操作");
+        }
+    }
+</script>
+</body>
+</html>

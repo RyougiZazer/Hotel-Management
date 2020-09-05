@@ -24,7 +24,7 @@ public interface OrderMapper {
             @Result(column = "indate",property = "inDate"),
             @Result(column = "outdate",property = "outDate"),
             @Result(column = "oname",property = "oname"),
-            @Result(column = "omphone",property = "ophone")
+            @Result(column = "ophone",property = "ophone")
     })
     Order selectOrderByOrderId(Integer oid);
 
