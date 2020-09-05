@@ -49,6 +49,9 @@ public class OrderController {
     @RequestMapping(value = "delete/{oid}",method = {RequestMethod.GET})
     public String delete(@PathVariable("oid")Integer oid,Model model){
         System.out.println("需删除的订单编号是：" +oid.toString());
+        Room temproom = roomService.queryRoomByRoomId(orderService.selectOrderByOrderId(oid).getRid());
+        temproom.setStatus(0);
+        roomService.updateRoom(temproom);
         this.orderService.deleteOrder(oid);
         List<Order> orders = this.orderService.queryAllOrders(new Order());
         model.addAttribute("orders",orders);
@@ -72,6 +75,12 @@ public class OrderController {
             model.addAttribute("log","房间人数过多！请预定更多房间或更换房间类型！");
             return "order_manager";
         }
+        if(tempRoom.getStatus() == 1){
+            model.addAttribute("log","房间已被预订！");
+            return "order_manager";
+        }
+        tempRoom.setStatus(1);
+        roomService.updateRoom(tempRoom);
         try {
             this.orderService.addOrder(order);
         }catch (Exception e){

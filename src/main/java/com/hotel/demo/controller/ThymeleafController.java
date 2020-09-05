@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.Map;
 import com.hotel.demo.entity.User;
@@ -51,6 +53,9 @@ public class ThymeleafController {
 
     @GetMapping(path = "/index")
     public String index(Model model){
+        if(currentUser == null){
+            return "redirect:login";
+        }
         model.addAttribute("info",currentUser.getUsername());
         Date currentTime =  new Date();
         model.addAttribute("current",currentTime);
