@@ -31,7 +31,7 @@ public class ThymeleafController {
 
     @PostMapping(path = "/login")
     public String doLogin(@RequestParam Map<String,String> parm, Model model){
-        this.currentUser = new User(parm.get("username"),parm.get("password"));
+        this.currentUser = new User(parm.get("username"),parm.get("password"),0);
         System.out.println("User "+ currentUser.getUsername() +" try to login!!!!!");
         User temp = userService.selectUser(currentUser.getUsername());
         if(temp == null){
